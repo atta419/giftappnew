@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 */
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+Route::middleware(['auth:api'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -42,8 +42,9 @@ Route::get('logout', [RegisterController::class, 'loggedOut']);
 //-------------------------------------------------------
 
 //reset password
-Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
-Route::post('/password/reset', [ResetPasswordController::class, 'reset']);
+Route::post('/forgot/password', 'API\ForgotPasswordController@forgotPassword');
+Route::post('/password/reset', 'API\ForgotPasswordController@passwordReset');
+Route::post('/resend/code', 'API\ForgotPasswordController@resendCode');
 
 //-------------------------------------------------------
 
@@ -51,11 +52,8 @@ Route::get('/verified-only', function (Request $request) {
     dd('you are verified', $request->user()->name);
 })->middleware('auth:sanctum', 'verified');
 
-//to send the verification email
-Route::get('/email/resend', [APIVerificationController::class, 'resend'])->name('verification.resend');
-
 //to verify the link in the email
-Route::get('/email/verify/{id}/{hash}', [APIVerificationController::class, 'verify'])->name('verification.verify');
+Route::post('/email/verify', 'API\VerificationController@emailVerify')->middleware('auth:api');
 
 //-------------------------------------------------------
 
