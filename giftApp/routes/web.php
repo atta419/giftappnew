@@ -51,6 +51,8 @@ Route::resource('/customers', 'WEB\CustomerController'::class);
 
 Route::resource('/dashboard', 'WEB\DashboardController'::class);
 
+Route::resource('/prostatistics', 'WEB\ProstatisticsController'::class);
+
 
 
 

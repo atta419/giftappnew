@@ -13,8 +13,9 @@
 
 
 <div class="container" style="padding-top: 2%">
-<form action="{{ route('categories.store')}}" method="POST">
+<form action="{{ route('categories.store')}}" method="POST" >
     @csrf
+    
         <div class="form-group">
           <label for="exampleFormControlInput1">  categoriee </label>
           <input type="text" name=" name" class="form-control"  placeholder="categoriee ">
