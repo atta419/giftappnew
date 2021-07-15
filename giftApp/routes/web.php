@@ -49,6 +49,8 @@ Route::resource('/categories', 'WEB\CategorieeController'::class);
 
 Route::resource('/customers', 'WEB\CustomerController'::class);
 
+Route::resource('/dashboard', 'WEB\DashboardController'::class);
+
 
 
 
